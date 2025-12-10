@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <title>ԲառաԽաղ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1 class="app-title">ԲառաԽաղ</h1>
+    </header>
+    <main id="app-main">
+      <section id="view-landing" class="view active">
+        <p class="intro-text">Բարև, դու գտնվում ես Բառա աշխարհում։ Այստեղ մենք խաղալով կսովորենք, թե ինչ է գոյականը, ածականը, թվականը և դերանունը։</p>
+        <button id="btn-start" class="primary-button">Խաղալ</button>
+      </section>
+
+      <section id="view-section" class="view hidden">
+        <h2 class="view-title">Ընտրիր բաժինը</h2>
+        <div class="section-buttons">
+          <button class="section-button" data-section="noun">Գոյական</button>
+          <button class="section-button" data-section="adj">Ածական</button>
+          <button class="section-button" data-section="pron">Դերանուն</button>
+          <button class="section-button" data-section="num">Թվական</button>
+        </div>
+        <div class="section-actions">
+          <button id="btn-create-game" class="secondary-button">Ստեղծել իմ խաղը</button>
+          <button id="btn-back-landing" class="link-button">Վերադառնալ գլխավոր</button>
+        </div>
+      </section>
+
+      <section id="view-game" class="view hidden">
+        <div class="game-header">
+          <div id="game-section-label" class="badge"></div>
+          <div class="score-label">Միավորներ՝ <span id="game-score">0</span></div>
+        </div>
+        <div class="game-body">
+          <div class="game-word">Բառը՝ <span id="game-word-text"></span></div>
+          <div id="game-question-text" class="game-question"></div>
+          <div id="game-choices" class="choices-list"></div>
+          <div id="game-message" class="game-message"></div>
+        </div>
+        <div class="game-footer">
+          <button id="btn-game-quit" class="secondary-button">Վերջացնել խաղը</button>
+        </div>
+      </section>
+
+      <section id="view-create" class="view hidden">
+        <h2 class="view-title">Ստեղծիր նոր խաղ</h2>
+        <form id="create-game-form" class="create-form">
+          <label class="form-label">
+            Ընտրիր բաժինը
+            <select id="create-section" class="form-select">
+              <option value="noun">Գոյական</option>
+              <option value="adj">Ածական</option>
+              <option value="pron">Դերանուն</option>
+              <option value="num">Թվական</option>
+            </select>
+          </label>
+          <label class="form-label">
+            Տուր խաղին անուն
+            <input type="text" id="create-name" class="form-input" placeholder="Օրինակ՝ Գոյականների խաղ">
+          </label>
+          <label class="form-label">
+            Ընտրիր հարցերի քանակը
+            <input type="number" id="create-question-count" class="form-input" min="1" max="10" value="1">
+          </label>
+          <label class="form-label">
+            Գրի՛ր քո բառը
+            <input type="text" id="create-word" class="form-input" placeholder="Օրինակ՝ աթոռ">
+          </label>
+          <div id="questions-container" class="questions-container"></div>
+          <div class="create-actions">
+            <button type="button" id="btn-add-question" class="secondary-button">Ավելացնել հարց</button>
+            <button type="submit" class="primary-button">Պահպանել խաղը</button>
+          </div>
+          <div id="create-message" class="create-message"></div>
+        </form>
+        <button id="btn-back-sections" class="link-button">Վերադառնալ բաժինների</button>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "barakhagh",
+  "version": "1.0.0",
+  "description": "Educational Armenian grammar game (ԲառաԽաղ)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "noun": [
+    {
+      "name": "kodw",
+      "word": "կատու",
+      "questions": [
+        {
+          "prompt": "dv",
+          "choices": [
+            "sv",
+            "n"
+          ],
+          "correctIndex": 0
+        },
+        {
+          "prompt": "rv",
+          "choices": [
+            "df",
+            "s"
+          ],
+          "correctIndex": 0
+        }
+      ]
+    }
+  ]
+}
