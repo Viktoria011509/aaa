@@ -7,47 +7,41 @@ const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, "userGames.json");
 
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
 
 function readUserGames() {
   try {
-    if (!fs.existsSync(DATA_FILE)) {
-      return {};
-    }
+    if (!fs.existsSync(DATA_FILE)) return {};
     const raw = fs.readFileSync(DATA_FILE, "utf8");
-    if (!raw) {
-      return {};
-    }
-    const data = JSON.parse(raw);
-    if (data && typeof data === "object" && !Array.isArray(data)) {
-      return data;
-    }
-    return {};
-  } catch (e) {
+    return raw ? JSON.parse(raw) : {};
+  } catch (err) {
+    console.error("Read error:", err);
     return {};
   }
 }
 
 function writeUserGames(data) {
   try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), "utf8");
-  } catch (e) {}
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+  } catch (err) {
+    console.error("Write error:", err);
+  }
 }
 
-app.get("/api/user-games", function (req, res) {
-  const games = readUserGames();
-  res.json(games);
+// API routes
+app.get("/api/user-games", (req, res) => {
+  res.json(readUserGames());
 });
 
-app.post("/api/user-games", function (req, res) {
-  const body = req.body;
-  if (!body || typeof body !== "object" || Array.isArray(body)) {
+app.post("/api/user-games", (req, res) => {
+  if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
     return res.status(400).json({ error: "Invalid data" });
   }
-  writeUserGames(body);
-  res.json(body);
+  writeUserGames(req.body);
+  res.json({ success: true });
 });
 
-app.listen(PORT, function () {
-  console.log("Barakhagh backend listening on port " + PORT);
+// Start server (Render compatible)
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
